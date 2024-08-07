@@ -1,6 +1,7 @@
 package org.example.escuelarural_jpa.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 @MappedSuperclass
 @Data
 public class Person {
-    @Column(name="nombre", nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String name;
 
     @Column(name = "apellido", nullable = true, length = 50)

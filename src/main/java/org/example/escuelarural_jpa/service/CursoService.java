@@ -14,6 +14,7 @@ public class CursoService {
     @Autowired
     private CursoRepository cursoRepository;
 
+
     public List<Course> findAll() {
         return cursoRepository.findAll();
     }
@@ -32,4 +33,3 @@ public class CursoService {
         cursoRepository.deleteById(id);
     }
 }
-

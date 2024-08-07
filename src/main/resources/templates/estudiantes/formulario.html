@@ -24,7 +24,9 @@
     </div>
     <div>
         <label for="curso">Curso:</label>
-        <input type="text" id="curso" th:field="*{course.title}" />
+        <select id="curso" th:field="*{course.id}">
+            <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.title}"></option>
+        </select>
     </div>
     <div>
         <button type="submit">Guardar</button>

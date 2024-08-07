@@ -19,6 +19,4 @@ public class Grade {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
-
-    // Add additional fields for the grade (e.g., subject, score, etc.)
 }
