@@ -17,6 +17,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Fecha de Nacimiento</th>
+        <th>Curso</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -26,6 +27,7 @@
         <td th:text="${estudiante.name}"></td>
         <td th:text="${estudiante.surname}"></td>
         <td th:text="${estudiante.birthDate}"></td>
+        <td th:text="${estudiante.course.title}"></td>
         <td>
             <a class="btn btn-warning" th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}" >Editar</a>
             <a class="btn btn-primary" th:href="@{/estudiantes/{id}(id=${estudiante.id})}">Ver Detalles</a>

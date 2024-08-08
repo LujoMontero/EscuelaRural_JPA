@@ -16,6 +16,9 @@ public class Grade {
     @Column(name = "id_nota")
     private int id;
 
+    @Column(name ="nota",nullable = false,length = 5)
+    private String grade;
+
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;

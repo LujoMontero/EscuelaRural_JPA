@@ -52,7 +52,7 @@ public class EstudianteController {
         return "estudiantes/formulario";
     }
 
-    @PostMapping("/actualizar")
+    @PostMapping("/guardar")
     public String update(@ModelAttribute("estudiante") Student student, Model model){
         estudianteService.save(student);
         List<Course> cursos = cursoService.findAll();
