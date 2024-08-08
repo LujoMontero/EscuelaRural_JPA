@@ -1,5 +1,8 @@
+   <input type="hidden" name="id" id="id" th:field="*{id}">
+
 package org.example.escuelarural_jpa.controller;
 
+import jakarta.validation.Valid;
 import org.example.escuelarural_jpa.entity.Course;
 import org.example.escuelarural_jpa.entity.Student;
 import org.example.escuelarural_jpa.service.CursoService;
@@ -7,6 +10,7 @@ import org.example.escuelarural_jpa.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +35,10 @@ public class EstudianteController {
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         Student estudiante = estudianteService.findById(id);
+        if (estudiante == null) {
+            model.addAttribute("error", "Estudiante no encontrado");
+            return "error";
+        }
         model.addAttribute("estudiante", estudiante);
         return "estudiantes/detalle";
     }
@@ -46,17 +54,26 @@ public class EstudianteController {
     public String edit(@PathVariable("id") Long id, Model model) {
 
         Student estudiante = estudianteService.findById(id);
-        model.addAttribute("estudiante", estudiante);
-        List<Course> cursos = cursoService.findAll();
-        model.addAttribute("cursos", cursos);
-        return "estudiantes/formulario";
-    }
 
-    @PostMapping("/actualizar")
-    public String update(@ModelAttribute("estudiante") Student student, Model model){
-        estudianteService.save(student);
-        List<Course> cursos = cursoService.findAll();
-        model.addAttribute("cursos", cursos);
+        if (estudiante != null) {
+            model.addAttribute("estudiante", estudiante);
+            List<Course> cursos = cursoService.findAll();
+            model.addAttribute("cursos", cursos);
+            return "estudiantes/formulario";
+        }
+        return "redirect:/estudiantes";
+    }
+    @PostMapping("/guardar")
+    public String save(@Valid @ModelAttribute("estudiante") Student estudiante, BindingResult result) {
+        if (result.hasErrors()) {
+            return "estudiantes/formulario";
+        }
+        if (estudiante.getId()==0) {
+            estudianteService.save(estudiante);
+
+        }else {
+            estudianteService.update(estudiante);
+        }
         return "redirect:/estudiantes";
     }
 

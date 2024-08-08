@@ -19,6 +19,8 @@
         <td th:text="${estudiante.name}">Nombre</td>
         <td>
             <a th:href="@{/estudiantes/{id}(id=${estudiante.id})}">Ver Detalles</a>
+            <a th:href="@{/estudiantes/borrar/{id}(id=${estudiante.id})}" >Eliminar</a>
+            <a th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}" >Editar</a>
         </td>
     </tr>
     </tbody>
