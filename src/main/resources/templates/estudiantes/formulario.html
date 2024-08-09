@@ -11,7 +11,8 @@
 <section class="container p-5">
     <h2 th:text="${estudiante.id == 0} ? 'Agregar Estudiante' : 'Editar Estudiante'"></h2>
 
-    <form class="row g-3 p-5" novalidate action="#" th:action="@{/estudiantes/guardar}" th:object="${estudiante}" method="post">
+    <form class="row g-3 p-5" novalidate action="#" th:action="@{/estudiantes/guardar}" th:object="${estudiante}"
+          method="post">
 
         <div class="col-md-4">
             <label class="form-label" for="nombre">Nombre:</label>
@@ -30,18 +31,19 @@
             <input class="form-control" type="email" id="correo" th:field="*{email}"/>
         </div>
         <div class="col-md-4">
-            <label class="form-label" for="curso">Curso:</label>
+            <label class="form-label" for="curso">Seleccione Curso:</label>
             <select class="form-control" id="curso" th:field="*{course.id}">
                 <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.title}"></option>
             </select>
         </div>
 
-    <div class="p-5 text-center">
-        <button class="btn btn-primary" type="submit">Guardar</button>
-        <a class="btn btn-primary" href="/estudiantes">Volver a la lista</a>
-    </div>
-
+        <div class="p-5 text-center">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a class="btn btn-primary" href="/estudiantes">Volver a la lista</a>
+        </div>
+    </form>
 </section>
+
 <footer th:include="~{../static/html/footer.html}"></footer>
 </body>
 </html>
