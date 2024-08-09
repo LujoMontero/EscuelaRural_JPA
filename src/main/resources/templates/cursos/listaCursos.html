@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cursos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<header th:include="~{../static/html/header.html}"></header>
+<section class="container p-5">
+    <h1>Lista de Cursos</h1>
+    <table class="table text-center">
+        <thead class="table-header">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="curso : ${cursos}">
+            <td th:text="${curso.id}"></td>
+            <td th:text="${curso.title}"></td>
+            <td th:text="${curso.description}"></td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/cursos/editar/{id}(id=${curso.id})}">Editar</a>
+                <a class="btn btn-danger" th:href="@{/cursos/borrar/{id}(id=${curso.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/cursos/nuevo">Agregar Curso</a>
+    </div>
+</section>
+<footer th:include="~{../static/html/footer.html}"></footer>
+</body>
+</html>
